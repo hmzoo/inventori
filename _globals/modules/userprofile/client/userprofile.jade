@@ -1,0 +1,6 @@
+
+template(name="profile")
+  H2 Profile
+  +quickForm collection="Meteor.users" doc=currentUser id="updateProfile" meteormethod="updateProfile" type="method-update" fields="username,emails.0.address,profile" buttonContent="Save Changes"
+  
+                

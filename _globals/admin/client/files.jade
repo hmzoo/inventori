@@ -1,0 +1,36 @@
+template(name="files")
+  .row
+    .col-md-6
+      +fileslist
+    .col-md-6
+    
+template(name="uploadDialog")
+  input(id="input-1" type="file" class="fileBrowse")
+
+
+template(name="fileslist")
+  +uploadDialog
+  button(id="removefile" class="pull-right") remove
+  table.table
+    tbody
+      each files
+        tr(class='#{selector}')
+          td
+            |<b>#{filename}</b>
+            br
+            if length
+              |<small> #{contentType} </small>            
+            else
+              |#{uploadStatus}  &nbsp; #{uploadProgress}% complete
+            
+          td 
+            |#{ownerName} 
+            br
+            |<small> #{niceUploadDate} </small> 
+            br
+            if length
+              |#{formattedLength} &nbsp;            
+
+          td
+            if length
+              a(href="#{linkmd5}?download=true" target="_self") download

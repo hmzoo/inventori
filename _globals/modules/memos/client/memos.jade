@@ -1,0 +1,78 @@
+template(name="memos")
+    .row
+
+      .col-md-4
+        a(href='memos/new' class="fa fa-plus-square-o" aria-hidden="true") &nbsp;New memo #{title}
+      .col-md-8
+          <br/><br/>
+
+    .row
+      .col-md-12
+        H1 Memos
+        ul.memos
+        each memos
+          li
+            a(href='memos/#{_id}') #{title} 
+            small #{modifiedDate}
+
+        
+template(name="memo")
+  with currentMemo
+    .row
+        .col-md-4
+          a(href='#{memosPath}' class="fa fa-angle-double-left pull-left" aria-hidden="true") &nbsp;memos
+        .col-md-4
+            <br/><br/>
+        .col-md-4
+          a(href='#{memoPath}/edit' class="fa fa-pencil-square-o ext-lowercase pull-right" aria-hidden="true") &nbsp;edit #{title}
+    .row
+      .col-md-12
+        +markdown 
+          #{content}
+        
+        
+
+template(name="newmemo")
+  .row
+    .col-md-4
+      a(href='#{memosPath}' class="fa fa-angle-double-left  pull-left" aria-hidden="true") &nbsp;memos
+    .col-md-8
+      <br/><br/>
+  .row
+    .col-md-12
+      +quickForm collection="Memos" id="adminInsertMemoForm"  type="insert"  buttonContent="Save"
+ 
+
+    
+template(name="editmemo")
+
+  .row
+    .col-md-4
+      a(href='#{memoPath}' class="fa fa-angle-double-left  pull-left" aria-hidden="true") &nbsp;back
+    .col-md-4
+      <br/><br/>
+    .col-md-4
+      a(href='#' class="fa fa-trash ext-lowercase pull-right showdeletememo" aria-hidden="true") &nbsp;delete #{title}
+
+  +deletememo
+  div(id="editmemo" class="row")
+    .col-md-12
+      +quickForm collection="Memos" doc=currentMemo id="adminUpdateMemoForm"  type="update"  buttonContent="Save Changes"
+     
+        
+template(name="deletememo")
+             
+  div(id="deletememo" class="row hidden")
+    .col-md-12
+      <br/><br/>
+      div(class="alert alert-warning" role="alert" )
+        .row
+          .col-md-4
+          div(class=" col-md-4 center-block")
+            p Delete memo <b>#{currentMemo.title}</b>
+            button( type="button" class="btn btn-danger deletememo " ) Confirm
+            button( type="button" class="btn btn-default cancel hidedeletememo" ) Cancel
+          .col-md-4
+
+        
+        

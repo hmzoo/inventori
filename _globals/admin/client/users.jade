@@ -1,0 +1,48 @@
+template(name="users")
+  #users.row
+    h2 Users
+    table.table
+      thead
+        tr
+          th Username
+          th Email
+          th Roles
+          th Created from
+          th 
+      tbody
+        each users
+          tr
+            td.text-left.text-middle
+              | #{username}
+            td
+              | {{emails.[0].address}}
+            td
+              | {{userroles}}
+            td
+              | {{createdFrom}}
+            td
+              a(href="#{usersPath}/#{_id}/edit") edit
+            td
+              a(href="users/#{_id}/delete") delete
+                
+                
+                
+template(name="edituser")
+  #edituser.row
+    h2 User #{userId}
+    +autoForm collection="Meteor.users" doc=currentUser id="adminUpdateUserForm" meteormethod="adminUpdateUser" type="method-update" omitFields="services" 
+      +afQuickFields
+      div
+        button( type="submit" class="btn btn-primary" ) Save Changes
+        button( type="button" class="btn btn-default cancel goback" ) Cancel
+        
+        
+template(name="deleteuser")
+  #deleteuser.row
+    h2 Delete user #{userDeleting.username}
+      div
+        button( type="submit" class="btn btn-primary deleteuser" ) Confirm
+        button( type="button" class="btn btn-default cancel goback" ) Cancel
+   
+      
+    
