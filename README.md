@@ -1,1 +1,3 @@
 # hmapp
+
+meteor application structure
