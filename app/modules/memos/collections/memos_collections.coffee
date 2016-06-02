@@ -10,27 +10,33 @@ Schemas.Memo = new SimpleSchema
     autoform:
       rows: 12
 
+  owner:
+    type: String
+    unique: true
+
   createdAt:
     type: Date
-    autoform: 
+    autoform:
       type: "hidden"
     autoValue: ->
       if this.isInsert
         new Date()
-      
+
   updatedAt:
     type: Date
-    autoform: 
+    autoform:
       type: "hidden"
     autoValue: ->
       if this.isUpdate or this.isInsert
         new Date()
-    
-    
+
+
 
 Memos.attachSchema(Schemas.Memo)
 
 Memos.helpers
+  ownerUserName: ->
+    Meteor.users.findOne(@owner)?.username "unknown"
   createdFrom: ->
     moment(@createdAt).fromNow()
   modifiedDate: ->

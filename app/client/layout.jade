@@ -34,11 +34,11 @@ template(name="navigation")
           if isLogged
             li
               a(href="/dashboard") Dashboard
+            li
+              a(href="/memos") Notes
 
         ul(class="nav navbar-nav navbar-right")
           if isAdmin
-            li
-              a(href="/admin/memos") Notes
             li.dropdown
               a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Manage <b class='caret'></b>
               ul.dropdown-menu

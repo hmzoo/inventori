@@ -32,18 +32,3 @@ IsAdmin.route '/files',
     @.register('files', Meteor.subscribe('adminFiles'))
   action: ->
     BlazeLayout.render('layout',{ content:'files'})
-
-
-#DASHBOARD
-IsAdmin.route '/dashboard',
-  name: 'admindashboard'
-  action: ->
-    BlazeLayout.render('layout',{ content:'admindashboard'})
-
-
-
-#COLLECTION
-IsAdmin.route '/collection',
-  name: 'collection'
-  action: ->
-    BlazeLayout.render('layout',{ content:'collection'})

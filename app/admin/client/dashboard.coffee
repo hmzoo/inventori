@@ -1,3 +1,10 @@
+#DASHBOARD
+IsAdmin.route '/dashboard',
+  name: 'admindashboard'
+  action: ->
+    BlazeLayout.render('layout',{ content:'admindashboard'})
+
+
 
 Template.admindashboard.onCreated ->
   self=this
@@ -7,10 +14,6 @@ Template.admindashboard.onCreated ->
       console.log(err)
     else
       self.stats.set(result)
-
-
-
-
 
 Template.admindashboard.helpers
   stats:->
