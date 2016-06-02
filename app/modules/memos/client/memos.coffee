@@ -26,7 +26,7 @@ Template.deletememo.events
     FlowRouter.go("memos")
 
 
-AutoForm.addHooks ['adminInsertMemoForm', 'adminUpdateMemoForm'],
+AutoForm.addHooks ['insertMemoForm', 'updateMemoForm'],
   onSuccess: (formType, result) ->
     console.log(result)
     switch formType

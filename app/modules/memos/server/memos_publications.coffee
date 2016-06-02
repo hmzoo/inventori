@@ -1,11 +1,9 @@
-Meteor.publish 'adminMemos', ->
+Meteor.publish 'memos', ->
+		Memos.find({owner:this.userId})
+
+
+Meteor.publish 'memo', (memoId)->
 	if Roles.userIsInRole @userId, ['admin']
-		Memos.find({})
-	else
-		@ready()
-    
-Meteor.publish 'adminMemo', (memoId)->
-	if Roles.userIsInRole @userId, ['admin']
-		Memos.find({_id:memoId})
+		Memos.find({_id:memoId,owner:this.userId})
 	else
 		@ready()

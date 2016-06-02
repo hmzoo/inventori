@@ -3,7 +3,6 @@
 Schemas.Memo = new SimpleSchema
   title:
     type: String
-    unique: true
 
   content:
     type: String
@@ -12,7 +11,11 @@ Schemas.Memo = new SimpleSchema
 
   owner:
     type: String
-    unique: true
+    autoform:
+      type: "hidden"
+    autoValue: ->
+      if this.isUpdate or this.isInsert
+        this.userId
 
   createdAt:
     type: Date

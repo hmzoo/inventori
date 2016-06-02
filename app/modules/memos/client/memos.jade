@@ -40,7 +40,7 @@ template(name="newmemo")
       <br/><br/>
   .row
     .col-md-12
-      +quickForm collection="Memos" id="adminInsertMemoForm"  type="insert"  buttonContent="Save"
+      +quickForm collection="Memos" id="insertMemoForm"  type="insert"  buttonContent="Save"
  
 
     
@@ -57,7 +57,7 @@ template(name="editmemo")
   +deletememo
   div(id="editmemo" class="row")
     .col-md-12
-      +quickForm collection="Memos" doc=currentMemo id="adminUpdateMemoForm"  type="update"  buttonContent="Save Changes"
+      +quickForm collection="Memos" doc=currentMemo id="updateMemoForm"  type="update"  buttonContent="Save Changes"
      
         
 template(name="deletememo")
