@@ -5,4 +5,6 @@ Template.gizmosexport.events
       if err
         console.log(err)
       else
-        console.log(result)
+        csv = Papa.unparse(result)
+        console.log(csv)
+        Download(csv,"gizmos.csv")

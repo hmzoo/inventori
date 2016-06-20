@@ -1,2 +1,9 @@
 template(name="gizmosimport")
   H1 GIZMOS IMPORT
+  unless uploading
+    input(type="file" name="uploadCSV")
+  else
+    p
+      i(class="fa fa-spin fa-refresh")
+      | Uploading ...
+      
