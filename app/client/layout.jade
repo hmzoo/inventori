@@ -36,6 +36,19 @@ template(name="navigation")
               a(href="/dashboard") Dashboard
             li
               a(href="/memos") Notes
+            li.dropdown
+              a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Gizmos
+              ul.dropdown-menu
+                li
+                  a(href="/gizmos") List
+                li
+                  a(href="/import/gizmos") Import
+                li
+                  a(href="/export/gizmos") Export
+ 
+            li
+              a(href="/borrowings") Borrowings
+
 
         ul(class="nav navbar-nav navbar-right")
           if isAdmin
@@ -46,6 +59,8 @@ template(name="navigation")
                   a(href="/admin/users") Users
                 li
                   a(href="/admin/files") Files
+                li
+                  a(href="/admin/persons") Persons
 
           +loginButtons
 

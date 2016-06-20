@@ -1,0 +1,83 @@
+template(name="persons")
+    .row
+
+      .col-md-4
+        a(href='persons/new' class="fa fa-plus-square-o" aria-hidden="true") &nbsp;New person #{title}
+      .col-md-8
+          br
+          br
+
+    .row
+      .col-md-12
+        H1 persons
+        ul.persons
+        each persons
+          li
+            a(href='persons/#{_id}') #{firstname} #{lastname}
+            small #{modifiedDate}
+
+        
+template(name="person")
+  with currentPerson
+    .row
+        .col-md-4
+          a(href='#{personsPath}' class="fa fa-angle-double-left pull-left" aria-hidden="true") &nbsp;persons
+        .col-md-4
+            br
+            br
+        .col-md-4
+          a(href='#{personPath}/edit' class="fa fa-pencil-square-o ext-lowercase pull-right" aria-hidden="true") &nbsp;edit #{title}
+    .row
+      .col-md-12
+        P #{firstname} #{lastname}
+        p #{username} #{email}
+
+        
+        
+
+template(name="newperson")
+  .row
+    .col-md-4
+      a(href='#{personsPath}' class="fa fa-angle-double-left  pull-left" aria-hidden="true") &nbsp;persons
+    .col-md-8
+      br
+      br
+  .row
+    .col-md-12
+      +quickForm collection="Persons" id="insertPersonForm"  type="insert"  buttonContent="Save"
+ 
+
+    
+template(name="editperson")
+
+  .row
+    .col-md-4
+      a(href='#{personPath}' class="fa fa-angle-double-left  pull-left" aria-hidden="true") &nbsp;back
+    .col-md-4
+      brbr
+    .col-md-4
+      a(href='#' class="fa fa-trash ext-lowercase pull-right showdeleteperson" aria-hidden="true") &nbsp;delete #{title}
+
+  +deleteperson
+  div(id="editperson" class="row")
+    .col-md-12
+      +quickForm collection="Persons" doc=currentPerson id="updatePersonForm"  type="update"  buttonContent="Save Changes"
+     
+        
+template(name="deleteperson")
+             
+  div(id="deleteperson" class="row hidden")
+    .col-md-12
+      br
+      br
+      div(class="alert alert-warning" role="alert" )
+        .row
+          .col-md-4
+          div(class=" col-md-4 center-block")
+            p Delete person <b>#{currentPerson.title}</b>
+            button( type="button" class="btn btn-danger deleteperson " ) Confirm
+            button( type="button" class="btn btn-default cancel hidedeleteperson" ) Cancel
+          .col-md-4
+
+        
+        

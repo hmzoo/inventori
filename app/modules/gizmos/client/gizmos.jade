@@ -1,0 +1,83 @@
+template(name="gizmos")
+    .row
+
+      .col-md-4
+        a(href='gizmos/new' class="fa fa-plus-square-o" aria-hidden="true") &nbsp;New gizmo #{title}
+      .col-md-8
+          br
+          br
+
+    .row
+      .col-md-12
+        H1 gizmos
+        ul.gizmos
+        each gizmos
+          li
+            a(href='gizmos/#{_id}') #{name} 
+            small #{modifiedDate}
+
+        
+template(name="gizmo")
+  with currentGizmo
+    .row
+        .col-md-4
+          a(href='#{gizmosPath}' class="fa fa-angle-double-left pull-left" aria-hidden="true") &nbsp;gizmos
+        .col-md-4
+            br
+            br
+        .col-md-4
+          a(href='#{gizmoPath}/edit' class="fa fa-pencil-square-o ext-lowercase pull-right" aria-hidden="true") &nbsp;edit #{title}
+    .row
+      .col-md-12
+        H3 #{name}
+        H6 #{code}
+        p #{description}
+        
+        
+
+template(name="newgizmo")
+  .row
+    .col-md-4
+      a(href='#{gizmosPath}' class="fa fa-angle-double-left  pull-left" aria-hidden="true") &nbsp;gizmos
+    .col-md-8
+      br
+      br
+  .row
+    .col-md-12
+      +quickForm collection="Gizmos" id="insertGizmoForm"  type="insert"  buttonContent="Save"
+ 
+
+    
+template(name="editgizmo")
+
+  .row
+    .col-md-4
+      a(href='#{gizmoPath}' class="fa fa-angle-double-left  pull-left" aria-hidden="true") &nbsp;back
+    .col-md-4
+      brbr
+    .col-md-4
+      a(href='#' class="fa fa-trash ext-lowercase pull-right showdeletegizmo" aria-hidden="true") &nbsp;delete #{title}
+
+  +deletegizmo
+  div(id="editgizmo" class="row")
+    .col-md-12
+      +quickForm collection="Gizmos" doc=currentGizmo id="updateGizmoForm"  type="update"  buttonContent="Save Changes"
+     
+        
+template(name="deletegizmo")
+             
+  div(id="deletegizmo" class="row hidden")
+    .col-md-12
+      br
+      br
+      div(class="alert alert-warning" role="alert" )
+        .row
+          .col-md-4
+          div(class=" col-md-4 center-block")
+            p Delete gizmo <b>#{currentGizmo.title}</b>
+            button( type="button" class="btn btn-danger deletegizmo " ) Confirm
+            button( type="button" class="btn btn-default cancel hidedeletegizmo" ) Cancel
+          .col-md-4
+
+        
+        

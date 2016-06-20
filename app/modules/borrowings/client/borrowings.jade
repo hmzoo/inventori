@@ -1,0 +1,98 @@
+template(name="borrowings")
+    .row
+
+      .col-md-4
+        a(href='borrowings/new' class="fa fa-plus-square-o" aria-hidden="true") &nbsp;New borrowing #{title}
+      .col-md-8
+          br
+          br
+
+    .row
+      .col-md-12
+        H1 borrowings
+
+        table.table
+          thead
+            tr
+              th borrowing
+              th gizmo
+              th startAt
+              th endAt
+              th
+          tbody
+            each borrowings
+              tr
+                td  #{personInfo}
+                td  #{gizmoInfo}
+                td  #{niceStartAt}
+                td  #{niceEndAt}
+                td  
+                  a(href='borrowings/#{_id}') show
+       
+
+        
+template(name="borrowing")
+  with currentBorrowing
+    .row
+        .col-md-4
+          a(href='#{borrowingsPath}' class="fa fa-angle-double-left pull-left" aria-hidden="true") &nbsp;borrowings
+        .col-md-4
+            br
+            br
+        .col-md-4
+          a(href='#{borrowingPath}/edit' class="fa fa-pencil-square-o ext-lowercase pull-right" aria-hidden="true") &nbsp;edit #{title}
+    .row
+      .col-md-12
+        P person : #{personInfo}
+        p gizmo  : #{gizmoInfo}
+        div #{infos}
+
+        
+        
+
+template(name="newborrowing")
+  .row
+    .col-md-4
+      a(href='#{borrowingsPath}' class="fa fa-angle-double-left  pull-left" aria-hidden="true") &nbsp;borrowings
+    .col-md-8
+      br
+      br
+  .row
+    .col-md-12
+      +quickForm collection="Borrowings" id="insertBorrowingForm"  type="insert"  buttonContent="Save"
+ 
+
+    
+template(name="editborrowing")
+
+  .row
+    .col-md-4
+      a(href='#{borrowingPath}' class="fa fa-angle-double-left  pull-left" aria-hidden="true") &nbsp;back
+    .col-md-4
+      brbr
+    .col-md-4
+      a(href='#' class="fa fa-trash ext-lowercase pull-right showdeleteborrowing" aria-hidden="true") &nbsp;delete #{title}
+
+  +deleteborrowing
+  div(id="editborrowing" class="row")
+    .col-md-12
+      +quickForm collection="Borrowings" doc=currentBorrowing id="updateBorrowingForm"  type="update"  buttonContent="Save Changes"
+     
+        
+template(name="deleteborrowing")
+             
+  div(id="deleteborrowing" class="row hidden")
+    .col-md-12
+      br
+      br
+      div(class="alert alert-warning" role="alert" )
+        .row
+          .col-md-4
+          div(class=" col-md-4 center-block")
+            p Delete borrowing <b>#{currentBorrowing._id}</b>
+            button( type="button" class="btn btn-danger deleteborrowing " ) Confirm
+            button( type="button" class="btn btn-default cancel hidedeleteborrowing" ) Cancel
+          .col-md-4
+
+        
+        

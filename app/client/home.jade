@@ -1,3 +1,6 @@
 template(name="home")
   #home
-    H2 Home
+  if notLogged
+    H2 Home public
+  else  
+    +home_private

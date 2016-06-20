@@ -1,3 +1,3 @@
-# hmapp
+# inv
 
 meteor application structure
